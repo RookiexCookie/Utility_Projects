@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Pixel Terminal — Image → Pixel Art</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="app">
+        <header class="app-header">Pixel Terminal</header>
+
+        <main class="layout">
+            <section class="terminal" id="terminal">
+                <div class="terminal-inner" id="terminalInner"></div>
+                <div class="terminal-controls">
+                    <input id="fileInput" type="file" accept="image/*" />
+                    <label for="fileInput" class="file-upload-label">Open File</label>
+                    
+                    <label for="pixelRange">Pixel size</label>
+                    <input id="pixelRange" type="range" min="1" max="64" value="12" />
+                    <button id="downloadBtn">Download</button> </div>
+            </section>
+
+            <section class="preview" id="preview">
+                <canvas id="previewCanvas"></canvas>
+                <div class="preview-caption">Preview (pixelated)</div>
+            </section>
+        </main>
+
+        <footer class="app-footer">Tip: You can also drag & drop an image onto the page.</footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utility Software Suite</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6a05ad; /* Deep Purple */
+            --secondary-color: #9d2ec0; /* Lighter Purple */
+            --accent-color: #00bcd4; /* Cyan */
+            --text-color: #333;
+            --light-text-color: #f4f4f4;
+            --bg-light: #f9f9f9;
+            --bg-dark: #222;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--light-text-color);
+            text-align: center;
+            padding: 80px 20px;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Utility Cards Section */
+        .utility-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        .utility-card {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Pushes button to bottom */
+        }
+
+        .utility-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .utility-card .icon {
+            font-size: 3em;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .utility-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .utility-card p {
+            font-size: 0.95em;
+            color: #666;
+            margin-bottom: 25px;
+            flex-grow: 1; /* Allows paragraph to take available space */
+        }
+
+        .utility-card .button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .utility-card .button:hover {
+            background-color: #00a4bd;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--bg-dark);
+            color: var(--light-text-color);
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+            border-top-left-radius: 50px;
+            border-top-right-radius: 50px;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        .footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--light-text-color);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            .hero p {
+                font-size: 1em;
+            }
+            .utility-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    </head>
+<body>
+
+    <header class="hero">
+        <div class="container">
+            <h1>Your Utility Software Hub</h1>
+            <p>A curated collection of simple, powerful, and free online tools designed to make your daily tasks easier and more creative.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="utility-grid">
+
+            <div class="utility-card">
+                <div class="icon">🎨</div> <h3>Image to Pixel Art</h3>
+                <p>Transform any image into beautiful, retro pixel art with customizable settings. Perfect for game assets or nostalgic fun.</p>
+                <a href="./image_to_pixel_art/index.html" class="button">Launch Tool</a>
+            </div>
+
+            <div class="utility-card">
+                <div class="icon">📝</div> <h3>Text Formatter</h3>
+                <p>Clean, format, and manipulate text strings quickly. Case conversion, line operations, and more.</p>
+                <a href="./text_formatter/index.html" class="button">Launch Tool</a>
+            </div>
+
+            <div class="utility-card">
+                <div class="icon">📏</div> <h3>Unit Converter</h3>
+                <p>Convert between various units of measurement for length, weight, temperature, and many others.</p>
+                <a href="./unit_converter/index.html" class="button">Launch Tool</a>
+            </div>
+
+            </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2023 YourName/Project. All rights reserved.</p>
+        <p>
+            <a href="https://github.com/YourGitHubUsername/utility_software" target="_blank">GitHub Repository</a> |
+            <a href="#">About</a>
+        </p>
+    </footer>
+
+</body>
+</html>
