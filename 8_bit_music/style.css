@@ -1,0 +1,259 @@
+        :root {
+            --bg-color: #1a1a2e;
+            --primary-glow: #00ffff;
+            --secondary-glow: #e03bff;
+            --pad-inactive: rgba(0, 0, 0, 0.25);
+            --pad-active: #2eff7b;
+            --pad-active-glow: 0 0 8px 2px rgba(46, 255, 123, 0.7);
+            --pad-hover: rgba(255, 255, 255, 0.1);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --glass-bg: rgba(26, 26, 46, 0.5);
+            --font-primary: 'Roboto Mono', monospace;
+            --font-display: 'Press Start 2P', cursive;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--bg-color);
+            background-image:
+                linear-gradient(rgba(255, 255, 255, .02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, .02) 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 0.5rem;
+        }
+
+        .synth-container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        header {
+            text-align: center;
+        }
+
+        header h1 {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            color: var(--primary-glow);
+            text-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        header p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 1px;
+            margin-top: 0.5rem;
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: 1fr 4fr 1fr;
+            gap: 2rem;
+        }
+
+        /* Instruments Rack */
+        .instruments-rack {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding: 1rem;
+            border-right: 1px solid var(--border-color);
+        }
+        /* asdasd */
+
+        .instrument {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.2rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .instrument-light {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+            background-color: var(--pad-inactive);
+            transition: all 0.1s ease;
+        }
+
+        .instrument.playing .instrument-light {
+            background-color: var(--pad-active);
+            box-shadow: var(--pad-active-glow);
+        }
+
+        /* Step Sequencer */
+        .sequencer-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .sequencer-grid {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(16, 1fr);
+            grid-template-rows: repeat(10, 1fr);
+            gap: 5px;
+            aspect-ratio: 16 / 10;
+        }
+        
+        .pad {
+            background-color: var(--pad-inactive);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.1s ease, box-shadow 0.1s ease;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .pad:hover {
+            background-color: var(--pad-hover);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .pad.active {
+            background-color: var(--pad-active);
+            box-shadow: var(--pad-active-glow);
+        }
+        
+        .playhead {
+            position: absolute;
+            top: -5px;
+            bottom: -5px;
+            left: 0;
+            width: calc(100% / 16);
+            background-color: rgba(255, 165, 0, 0.5);
+            border: 2px solid orange;
+            border-radius: 5px;
+            pointer-events: none;
+            transition: transform 0.05s linear;
+            z-index: 10;
+            opacity: 0;
+        }
+
+        .sequencer-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .sequencer-controls button {
+            font-family: var(--font-primary);
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--border-color);
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .sequencer-controls button:hover {
+            border-color: var(--secondary-glow);
+            color: var(--secondary-glow);
+            box-shadow: 0 0 10px var(--secondary-glow);
+        }
+
+        /* Controls Panel */
+        .controls-panel {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1.5rem;
+            padding: 1rem;
+            border-left: 1px solid var(--border-color);
+        }
+        
+        .playback-controls {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .playback-controls button {
+            background: none;
+            border: 2px solid var(--border-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.2s ease;
+        }
+        
+        .playback-controls button:hover, .playback-controls button.active {
+            border-color: var(--primary-glow);
+            color: var(--primary-glow);
+            box-shadow: 0 0 10px var(--primary-glow);
+            transform: scale(1.05);
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .control-group label {
+            text-align: center;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        #tempo-display {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-glow);
+            text-shadow: 0 0 5px var(--primary-glow);
+        }
+
+        #tempo-display span {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+        
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 8px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 5px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            background: var(--primary-glow);
+            border-radius: 50%;
+            border: 2px solid var(--bg-color);
+            box-shadow: 0 0 8px var(--primary-glow);
+        }

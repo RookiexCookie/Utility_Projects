@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8-Bit SynthCraft</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <div class="synth-container">
+        <header>
+            <h1>8-BIT SYNTHCRAFT</h1>
+            <p>CREATE CHIPTUNE MELODIES</p>
+        </header>
+
+        <main>
+            <div class="instruments-rack" id="instruments-rack">
+                </div>
+
+            <div class="sequencer-container">
+                <div class="sequencer-grid" id="sequencer-grid">
+                    <div class="playhead" id="playhead"></div>
+                    </div>
+                    <div class="sequencer-controls">
+                        <button id="clear-btn">Clear Pattern</button>
+                        <button id="save-btn">Save Pattern</button>
+                        <button id="load-btn">Load Pattern</button>
+                        <input type="file" id="load-file-input" accept=".json" style="display: none;">
+                        <button id="export-btn">Export WAV</button>
+                    </div>
+            </div>
+
+            <div class="controls-panel">
+                <div class="playback-controls">
+                    <button id="play-btn">▶</button>
+                    <button id="stop-btn">■</button>
+                </div>
+
+                <div class="control-group">
+                    <label for="tempo">Tempo</label>
+                    <div id="tempo-display">120 <span>BPM</span></div>
+                    <input type="range" id="tempo" min="60" max="240" value="120">
+                </div>
+                
+                <div class="control-group">
+                    <label for="bitcrusher">Bitcrusher</label>
+                    <input type="range" id="bitcrusher" min="1" max="8" value="8" step="1">
+                </div>
+
+                <div class="control-group">
+                    <label for="delay">Delay</label>
+                    <input type="range" id="delay" min="0" max="0.7" value="0" step="0.01">
+                </div>
+            </div>
+        </main>
+    </div>
+<script src="script.js"></script>
+</body>
+</html>
