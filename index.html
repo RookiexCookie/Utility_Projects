@@ -5,26 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Utility Software Suite</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #6a05ad; /* Deep Purple */
-            --secondary-color: #9d2ec0; /* Lighter Purple */
-            --accent-color: #00bcd4; /* Cyan */
-            --text-color: #333;
-            --light-text-color: #f4f4f4;
-            --bg-light: #f9f9f9;
-            --bg-dark: #222;
+            --bg-color: #0a0c10;
+            --primary-glow: #00f5d4;
+            --secondary-glow: #ff0054;
+            --glass-bg: rgba(15, 23, 42, 0.45);
+            --border-color: rgba(0, 245, 212, 0.2);
+            --text-color: #e0e0e0;
+            --text-muted: #a0a0a0;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
+            user-select: none;
             padding: 0;
-            background-color: var(--bg-light);
+            background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         .container {
@@ -32,175 +34,229 @@
             margin: 0 auto;
             padding: 20px;
         }
-
-        /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: var(--light-text-color);
             text-align: center;
-            padding: 80px 20px;
-            border-bottom-left-radius: 50px;
-            border-bottom-right-radius: 50px;
-            margin-bottom: 40px;
+
+            position: relative;
+            min-height: 280px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 60%;
+            height: 60%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(0, 245, 212, 0.15) 0%, rgba(0, 245, 212, 0) 70%);
+            z-index: -1;
         }
 
         .hero h1 {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Fira Code', monospace;
             font-size: 3.5em;
-            margin-bottom: 15px;
-            font-weight: 700;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: var(--primary-glow);
+            text-shadow: 0 0 8px var(--primary-glow), 0 0 16px rgba(0, 245, 212, 0.5);
+            animation: neon-flicker 4s ease-in-out infinite;
+        }
+
+        @keyframes neon-flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% {
+                text-shadow:
+                0 0 8px var(--primary-glow),
+                0 0 16px rgba(0, 245, 212, 0.5),
+                0 0 32px rgba(0, 245, 212, 0.3);
+                opacity: 1;
+            }
+            20%, 24%, 55% {        
+                text-shadow: none;
+                opacity: 0.7;
+            }
         }
 
         .hero p {
             font-size: 1.2em;
             max-width: 700px;
             margin: 0 auto;
-            opacity: 0.9;
+            color: var(--text-muted);
+            font-family: 'Fira Code', monospace;
         }
 
-        /* Utility Cards Section */
-        .utility-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 20px 0;
-        }
-
-        .utility-card {
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-            padding: 30px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between; /* Pushes button to bottom */
-        }
-
-        .utility-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-        }
-
-        .utility-card .icon {
-            font-size: 3em;
-            color: var(--accent-color);
-            margin-bottom: 20px;
-        }
-
-        .utility-card h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.8em;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-        }
-
-        .utility-card p {
-            font-size: 0.95em;
-            color: #666;
-            margin-bottom: 25px;
-            flex-grow: 1; /* Allows paragraph to take available space */
-        }
-
-        .utility-card .button {
+        .cursor {
             display: inline-block;
-            background-color: var(--accent-color);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            border: none;
-            cursor: pointer;
+            width: 1ch;
+            height: 1.2em;
+            background-color: var(--primary-glow);
+            margin-left: 5px;
+            animation: blink 1s infinite;
+            box-shadow: 0 0 5px var(--primary-glow);
+            vertical-align: middle;
         }
 
-        .utility-card .button:hover {
-            background-color: #00a4bd;
-            transform: translateY(-2px);
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
 
-        /* Footer */
-        .footer {
-            background-color: var(--bg-dark);
-            color: var(--light-text-color);
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: 50px;
-            border-top-left-radius: 50px;
-            border-top-right-radius: 50px;
+        .utility-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 40px 0; }
+        .utility-card { background: var(--glass-bg); border-radius: 15px; border: 1px solid var(--border-color); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 30px; text-align: center; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), inset 0 0 2px rgba(255, 255, 255, 0.2); opacity: 0; transform: translateY(100px) scale(0.9); transition: opacity 0.6s ease-out, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .utility-card.is-visible { opacity: 1; transform: translateY(0) scale(1); }
+        .utility-card:hover { animation: card-flicker 1.5s ease-in infinite; }
+        @keyframes card-flicker { 0%, 100% { border-color: var(--border-color); box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), 0 0 15px var(--primary-glow), inset 0 0 2px rgba(255, 255, 255, 0.2); } 50% { border-color: rgba(0, 245, 212, 0.5); box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), 0 0 25px var(--primary-glow), inset 0 0 2px rgba(255, 255, 255, 0.2); } }
+        .utility-card .icon { font-size: 3em; margin-bottom: 20px; filter: drop-shadow(0 0 5px var(--primary-glow)); }
+        .utility-card h3 { font-family: 'Fira Code', monospace; font-size: 1.6em; margin-bottom: 15px; color: var(--primary-glow); text-shadow: 0 0 5px var(--primary-glow); }
+        .utility-card p { font-size: 0.95em; color: var(--text-muted); margin-bottom: 30px; flex-grow: 1; }
+        .utility-card .button { display: inline-block; background-color: transparent; color: var(--primary-glow); padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; border: 1px solid var(--primary-glow); transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease; cursor: pointer; }
+        .utility-card .button:hover { background-color: var(--primary-glow); color: var(--bg-color); box-shadow: 0 0 15px var(--primary-glow); }
+        
+        .footer { background: linear-gradient(to top, rgba(0,0,0,0.5), transparent); text-align: center; padding: 60px 20px 30px 20px; margin-top: 50px; border-top: 1px solid var(--border-color); }
+        .footer p { margin: 0; font-size: 0.9em; color: var(--text-muted); }
+        .footer a { color: var(--primary-glow); text-decoration: none; margin: 0 10px; transition: color 0.3s ease, text-shadow 0.3s ease; }
+        .footer a:hover { color: var(--text-color); text-shadow: 0 0 5px var(--primary-glow); }
+        /* Scrollbar for modern browsers */
+        ::-webkit-scrollbar {
+            width: 12px; /* Width of vertical scrollbar */
+            height: 12px; /* Height of horizontal scrollbar */
         }
 
-        .footer p {
-            margin: 0;
-            font-size: 0.9em;
+        ::-webkit-scrollbar-track {
+            background: var(--glass-bg); /* Track background */
+            border-radius: 10px;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
         }
 
-        .footer a {
-            color: var(--accent-color);
-            text-decoration: none;
-            margin: 0 10px;
-            transition: color 0.3s ease;
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--primary-glow), var(--secondary-glow));
+            border-radius: 10px;
+            box-shadow: 0 0 8px rgba(0, 245, 212, 0.6);
+            border: 2px solid var(--glass-bg);
         }
 
-        .footer a:hover {
-            color: var(--light-text-color);
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, var(--secondary-glow), var(--primary-glow));
+            box-shadow: 0 0 15px rgba(0, 245, 212, 0.8);
         }
 
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5em;
-            }
-            .hero p {
-                font-size: 1em;
-            }
-            .utility-grid {
-                grid-template-columns: 1fr;
-            }
+        /* Firefox */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-glow) var(--glass-bg);
         }
+
+        @media (max-width: 768px) { .hero h1 { font-size: 2.8em; } .hero p { font-size: 1em; } .utility-grid { grid-template-columns: 1fr; } }
     </style>
-    </head>
+</head>
 <body>
 
     <header class="hero">
         <div class="container">
-            <h1>Your Utility Software Hub</h1>
-            <p>A curated collection of simple, powerful, and free online tools designed to make your daily tasks easier and more creative.</p>
+            <h1 id="hero-h1"></h1>
+            <p id="hero-p"></p>
         </div>
     </header>
 
     <main class="container">
         <section class="utility-grid">
-
             <div class="utility-card">
-                <div class="icon">🎨</div> <h3>Image to Pixel Art</h3>
+                <div class="icon">🎨</div>
+                <h3>Image to Pixel Art</h3>
                 <p>Transform any image into beautiful, retro pixel art with customizable settings. Perfect for game assets or nostalgic fun.</p>
                 <a href="./image-pixel-art/index.html" class="button">Launch Tool</a>
             </div>
-
             <div class="utility-card">
-                <div class="icon">🎵</div> <h3>8 Bit Music Maker</h3>
+                <div class="icon">🎵</div>
+                <h3>8 Bit Music Maker</h3>
                 <p>Build your own retro melodies with a classic step sequencer. Perfect for creating 8-bit video game music or just for fun.</p>
                 <a href="./8_bit_music/index.html" class="button">Launch Tool</a>
             </div>
             <div class="utility-card">
-              <div class="icon">📸</div> <h3>Code Image Carbonizer</h3>
+              <div class="icon">📸</div>
+              <h3>Code Image Carbonizer</h3>
               <p>Transform your code snippets into beautiful, shareable images. Customize themes, colors, and styles for your blog or social media.</p>
               <a href="./carbonize/index.html" class="button">Launch Tool</a>
             </div>
-
-            </section>
+            <div class="utility-card">
+              <div class="icon">🎧</div>
+              <h3>Lofi Chill Machine</h3>
+              <p>Mix calming lo-fi beats with ambient sounds like rain and vinyl crackle. Perfect for focus, studying, or unwinding.</p>
+              <a href="./lofi-chill/index.html" class="button">Launch Tool</a>
+          </div>
+            <div class="utility-card">
+              <div class="icon">⌨️</div>
+              <h3>ZenType</h3>
+              <p>Sharpen your typing skills with a minimalist, futuristic typing test. Track your words-per-minute (WPM) and accuracy in a clean, focused environment.</p>
+              <a href="./zentype/index.html" class="button">Launch Tool</a>
+          </div>
+        </section>
     </main>
 
     <footer class="footer">
-        <p>&copy; 2023 YourName/Project. All rights reserved.</p>
+        <p>&copy; 2025 Utility Hub. All rights reserved.</p>
         <p>
-            <a href="https://github.com/YourGitHubUsername/utility_software" target="_blank">GitHub Repository</a> |
+            <a href="https://github.com/RookiexCookie" target="_blank">GitHub Repository</a> |
             <a href="#">About</a>
         </p>
     </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const h1 = document.getElementById('hero-h1');
+            const p = document.getElementById('hero-p');
+            
+            const h1Text = "Utility Software Hub";
+            const pText = "A curated collection of simple, powerful online tools.";
+
+            async function typeSentence(sentence, element, delay = 50) {
+                element.innerHTML = "";
+                const textSpan = document.createElement('span');
+                const cursorSpan = document.createElement('span');
+                cursorSpan.className = 'cursor';
+                element.appendChild(textSpan);
+                element.appendChild(cursorSpan);
+
+                const letters = sentence.split("");
+                for (const letter of letters) {
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                    textSpan.textContent += letter;
+                }
+                
+                return cursorSpan; 
+            }
+
+            async function runTypingEffect() {
+                const h1Cursor = await typeSentence(h1Text, h1, 80);
+                h1Cursor.remove();
+
+                await new Promise(resolve => setTimeout(resolve, 500));
+
+                const pCursor = await typeSentence(pText, p, 40);
+            }
+
+            runTypingEffect();
+
+            const cards = document.querySelectorAll('.utility-card');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+        window.addEventListener('DOMContentLoaded', () => {
+    window.scrollTo(0, 0);
+});
+
+    </script>
 
 </body>
 </html>

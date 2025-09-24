@@ -22,8 +22,8 @@
             font-family: var(--font-primary);
             background-color: var(--bg-color);
             background-image:
-                linear-gradient(rgba(255, 255, 255, .02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, .02) 1px, transparent 1px);
+            linear-gradient(rgba(255, 255, 255, .02) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, .02) 1px, transparent 1px);
             background-size: 20px 20px;
             color: white;
             display: flex;
@@ -31,6 +31,7 @@
             align-items: center;
             min-height: 100vh;
             padding: 0.5rem;
+            overflow: hidden;
         }
 
         .synth-container {
@@ -45,6 +46,7 @@
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
+            transform: scale(0.85);
         }
 
         header {
@@ -71,7 +73,6 @@
             gap: 2rem;
         }
 
-        /* Instruments Rack */
         .instruments-rack {
             display: flex;
             flex-direction: column;

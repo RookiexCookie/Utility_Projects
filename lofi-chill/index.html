@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.9">
+    <title>Lofi Chill Player</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+</head>
+<body>
+
+    <img src="assets/witch.gif" id="background-gif" alt="Lofi Background">
+    <div class="video-overlay"></div>
+
+    <main class="container">
+        <header>
+            <h1>Lofi Chill Player</h1>
+            <p id="track-title">Now Playing: Select a track</p>
+        </header>
+
+        <canvas id="visualizer"></canvas>
+
+        <section class="music-selection">
+            <h2>Track List</h2>
+            <ul id="track-list"></ul>
+        </section>
+
+        <section class="music-player">
+            <div class="progress-container">
+                <input type="range" id="progress-bar" class="slider" value="0" step="1" min="0">
+                <div class="time-stamps">
+                    <span id="current-time">0:00</span>
+                    <span id="total-duration">0:00</span>
+                </div>
+            </div>
+
+            <div class="player-controls">
+                <button id="prev-btn" class="control-btn small-btn">
+                    <i class="fas fa-backward"></i>
+                </button>
+                <button id="play-pause-btn" class="control-btn large-btn">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button id="next-btn" class="control-btn small-btn">
+                    <i class="fas fa-forward"></i>
+                </button>
+                <button id="loop-btn" class="control-btn small-btn">
+                    <i class="fas fa-repeat"></i>
+                </button>
+            </div>
+
+            <div class="volume-container">
+                <i class="fas fa-volume-down"></i>
+                <input type="range" id="volume-slider" class="slider" value="80" step="1" min="0" max="100">
+                <i class="fas fa-volume-up"></i>
+            </div>
+        </section>
+
+        <audio id="main-audio"></audio>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

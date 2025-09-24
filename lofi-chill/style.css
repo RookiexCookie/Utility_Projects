@@ -1,0 +1,282 @@
+:root {
+    --background-color: #0a0c10;
+    --primary-glow: rgba(0, 245, 212, 0.7);
+    --secondary-glow: rgba(255, 0, 84, 0.7);
+    --text-color: #e0e0e0;
+    --glass-bg: rgba(15, 23, 42, 0.5);
+    --border-color: rgba(0, 245, 212, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+body {
+    font-family: 'Fira Code', monospace;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    
+}
+
+/* GIF Background Styling */
+#background-gif {
+    position: fixed; right: 0; bottom: 0;
+    width: 100%; height: 100%;
+    z-index: -2; object-fit:cover ;
+}
+
+.video-overlay { /* Renamed from .video-overlay to match GIF usage, but functionally the same */
+    position: fixed;
+     top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(10, 12, 16, 0.7); /* Darker tint for readability */
+    z-index: -1;
+}
+
+.container {
+    background: var(--glass-bg);
+    padding: 2rem 3rem;
+    border-radius: 15px;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.3), 0 0 15px var(--primary-glow);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    transform: scale(0.9);
+}
+
+header h1 {
+    color: var(--primary-glow);
+    text-shadow: 0 0 5px var(--primary-glow);
+    margin-bottom: 0.25rem;
+}
+
+header p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 1.5rem;
+    min-height: 1.2em; /* Prevents layout shift */
+}
+
+#visualizer {
+    width: 100%;
+    height: 80px;
+    display: block;
+    margin: 1.5rem 0;
+}
+
+/* Track List Styles */
+.music-selection {
+    margin-bottom: 2rem;
+}
+.music-selection h2 {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+    color: var(--primary-glow);
+    text-shadow: 0 0 3px var(--primary-glow);
+}
+
+#track-list {
+    list-style: none;
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.5rem 0;
+    margin-top: 1rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 0 5px rgba(0, 245, 212, 0.1);
+}
+
+#track-list::-webkit-scrollbar {
+    width: 8px;
+}
+#track-list::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+#track-list::-webkit-scrollbar-thumb {
+    background: var(--primary-glow);
+    border-radius: 10px;
+    box-shadow: 0 0 5px var(--primary-glow);
+}
+
+#track-list li {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.2s, color 0.2s;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+#track-list li:last-child {
+    border-bottom: none;
+}
+
+#track-list li:hover {
+    background-color: rgba(0, 245, 212, 0.1);
+    color: var(--primary-glow);
+}
+
+#track-list li.active {
+    background-color: var(--primary-glow);
+    color: var(--background-color);
+    font-weight: bold;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+
+/* Music Player Controls */
+.music-player {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.progress-container .time-stamps {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    opacity: 0.7;
+}
+
+.player-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem; /* Space between buttons */
+}
+
+.player-controls .control-btn {
+    background: transparent;
+    border: 2px solid var(--border-color);
+    color: var(--primary-glow);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 5px var(--primary-glow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.player-controls .control-btn.large-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+}
+
+.player-controls .control-btn.small-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+}
+
+.player-controls .control-btn:hover {
+    background-color: var(--primary-glow);
+    color: var(--background-color);
+    box-shadow: 0 0 15px var(--primary-glow);
+}
+
+.volume-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    opacity: 0.8;
+}
+
+/* Custom Slider Styles (for progress and volume) */
+.slider {
+    -appearance: none;
+    width: 100%;
+    height: 6px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    outline: none;
+    transition: opacity .2s;
+    cursor: pointer;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: var(--primary-glow);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--primary-glow);
+}
+
+.slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: var(--primary-glow);
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 0 10px var(--primary-glow);
+}
+
+/* === Themed Scrollbars === */
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background-color);
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba(0, 245, 212, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--background-color);
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--primary-glow);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 15px var(--secondary-glow);
+}
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--background-color) rgba(0, 0, 0, 0.3);
+}
+/* Add this new rule to your existing style.css file */
+
+.player-controls .control-btn.active {
+    color: var(--secondary-glow);
+    text-shadow: 0 0 8px var(--secondary-glow);
+}
+
+/* Make sure the player-controls gap is sufficient */
+.player-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem; /* Adjusted gap for the new button */
+}
