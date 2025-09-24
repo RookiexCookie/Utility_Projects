@@ -1,0 +1,171 @@
+/* General Setup */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #030409;
+    color: #fff;
+    font-family: 'Roboto Mono', monospace; /* Modern, clean font for general text */
+    overflow: hidden;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* Glassmorphism UI Panel */
+.controls {
+    position: absolute;
+    top: 50%; /* Centered vertically */
+    left: 25px; /* Aligned left */
+    transform: translateY(-50%); /* Adjust for perfect vertical centering */
+    padding: 30px; /* Increased padding */
+    background: rgba(10, 15, 30, 0.4);
+    backdrop-filter: blur(12px); /* Slightly more blur */
+    -webkit-backdrop-filter: blur(12px); 
+    border-radius: 18px; /* Slightly more rounded corners */
+    border: 1px solid rgba(0, 255, 255, 0.15); /* Softer border glow */
+    box-shadow: 0 10px 40px 0 rgba(0, 255, 255, 0.1); /* Enhanced shadow */
+    width: 340px; /* Slightly wider */
+    display: flex; /* Flex for internal alignment */
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+}
+
+/* Glowy Title Effect */
+.glow {
+    font-family: 'Orbitron', sans-serif; /* Keep Orbitron for titles */
+    color: #00ffff;
+    text-align: center;
+    margin-bottom: 15px; /* Adjusted margin */
+    font-size: 2.2rem; /* Slightly larger title */
+    letter-spacing: 3px; /* More prominent spacing */
+    text-shadow:
+        0 0 8px rgba(0, 255, 255, 0.8), /* Stronger central glow */
+        0 0 20px rgba(0, 255, 255, 0.6),
+        0 0 40px rgba(0, 170, 255, 0.4); /* Wider, softer outer glow */
+}
+
+/* Info Text */
+.info {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #99aab5; /* Softer grey */
+    margin-bottom: 25px; /* Increased margin */
+    line-height: 1.4;
+}
+
+/* Control Rows and Labels */
+.control-row {
+    margin-bottom: 22px; /* Adjusted spacing */
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Full width within controls */
+}
+
+.control-row label {
+    margin-bottom: 12px; /* Increased margin */
+    font-size: 0.95rem; /* Slightly larger labels */
+    color: #00e6e6; /* Brighter teal for labels */
+    text-shadow: 0 0 3px rgba(0, 255, 255, 0.6); /* Subtle glow on labels */
+    font-weight: 500; /* Medium weight */
+}
+
+/* Buttons */
+.button-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px; /* Slightly larger gap */
+    margin-top: 30px; /* Increased margin */
+    width: 100%;
+}
+
+.button-group #save {
+    grid-column: span 2;
+}
+
+button {
+    background: rgba(0, 255, 255, 0.08); /* Semi-transparent background */
+    border: 1px solid rgba(0, 255, 255, 0.4); /* Subtler border */
+    color: #00ffff;
+    padding: 12px 15px; /* More padding */
+    font-family: 'Roboto Mono', monospace; /* Consistent font */
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 8px; /* More rounded buttons */
+    transition: all 0.25s ease-in-out;
+    text-shadow: 0 0 5px #00ffff; /* Clearer text glow */
+    box-shadow: 0 0 5px rgba(0, 255, 255, 0.3); /* Subtle button glow */
+}
+
+button:hover {
+    background: rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 20px #00ffff, inset 0 0 8px rgba(0, 255, 255, 0.5); /* Stronger hover glow */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 0 10px #00ffff;
+}
+
+
+/* Custom Sliders - Significantly improved styling */
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px; /* Thicker track */
+    background: rgba(0, 255, 255, 0.15); /* Softer track background */
+    outline: none;
+    border-radius: 3px;
+    transition: background 0.15s ease-in-out;
+}
+
+input[type="range"]:hover {
+    background: rgba(0, 255, 255, 0.25);
+}
+
+/* Slider Thumb (the draggable part) */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px; /* Larger thumb */
+    height: 18px;
+    background: #00ffff; /* Neon cyan */
+    cursor: grab;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #00ffff, 0 0 25px #00ffff; /* Stronger, double glow */
+    border: 2px solid rgba(255, 255, 255, 0.8); /* White inner ring for definition */
+    margin-top: -6px; /* Adjust to center vertically on the track */
+    transition: all 0.2s ease-in-out;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: #00ffff;
+    cursor: grab;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #00ffff, 0 0 25px #00ffff;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    transition: all 0.2s ease-in-out;
+}
+
+input[type="range"]::-webkit-slider-thumb:active {
+    cursor: grabbing;
+    box-shadow: 0 0 15px #00ffff, 0 0 35px #00ffff; /* Even stronger glow when active */
+    transform: scale(1.1); /* Slightly larger when dragged */
+}
+
+input[type="range"]::-moz-range-thumb:active {
+    cursor: grabbing;
+    box-shadow: 0 0 15px #00ffff, 0 0 35px #00ffff;
+    transform: scale(1.1);
+}
